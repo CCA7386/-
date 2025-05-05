@@ -1,0 +1,68 @@
+<!-- 
+免责声明
+本项目的AI生成代码可能存在以下风险：
+- 侵犯第三方知识产权的潜在风险
+- 功能缺陷或安全性问题
+- 不同司法管辖区对AI作品认定的差异
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f5f5f5;
+        }
+        .search-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        .search-box { 
+            display: flex; 
+            margin: 20px 0; 
+        }
+        input[type="text"] { 
+            flex: 1; 
+            padding: 12px; 
+            font-size: 16px; 
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        button { 
+            padding: 12px 20px; 
+            font-size: 16px; 
+            background: #4285f4; 
+            color: white; 
+            border: none; 
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3367d6;
+        }
+        h1 {
+            color: #4285f4;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h1>搜索</h1>
+        <form action="{{ url_for('search') }}" method="POST">
+            <div class="search-box">
+                <input type="text" name="q" placeholder="输入搜索内容..." required>
+                <button type="submit">搜索</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

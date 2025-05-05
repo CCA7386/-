@@ -1,0 +1,108 @@
+<!-- 
+免责声明
+本项目的AI生成代码可能存在以下风险：
+- 侵犯第三方知识产权的潜在风险
+- 功能缺陷或安全性问题
+- 不同司法管辖区对AI作品认定的差异
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索结果 - {{ query }}</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f5f5f5;
+        }
+        .search-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .result { 
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px; 
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .result-title { 
+            font-size: 18px; 
+            color: #1a0dab; 
+            margin-bottom: 5px; 
+            text-decoration: none;
+        }
+        .result-title a {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .result-title a:hover {
+            text-decoration: underline;
+        }
+        .result-url { 
+            color: #006621; 
+            font-size: 14px; 
+            margin-bottom: 5px; 
+        }
+        .result-desc { 
+            color: #545454; 
+            line-height: 1.5;
+        }
+        .search-box { 
+            display: flex; 
+            margin: 10px 0 20px; 
+        }
+        input[type="text"] { 
+            flex: 1; 
+            padding: 10px; 
+            font-size: 16px; 
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            background: #4285f4; 
+            color: white; 
+            border: none; 
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .results-count {
+            color: #70757a;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form action="{{ url_for('search') }}" method="POST">
+            <div class="search-box">
+                <input type="text" name="q" value="{{ query }}" required>
+                <button type="submit">搜索</button>
+            </div>
+        </form>
+    </div>
+
+    {% if results %}
+        <div class="results-count">找到 {{ results|length }} 条结果</div>
+        {% for result in results %}
+            <div class="result">
+                <div class="result-title"><a href="{{ result.url }}">{{ result.title }}</a></div>
+                <div class="result-url">{{ result.url }}</div>
+                <div class="result-desc">{{ result.description }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="result">
+            <p>没有找到相关结果。请尝试其他搜索词。</p>
+        </div>
+    {% endif %}
+</body>
+</html>
